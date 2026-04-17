@@ -684,12 +684,32 @@
       margin-bottom: 16px;
     }
     /* ────────────── 8x8 CHAT BUTTON ────────────── */
+    /* Hide the default 8x8 widget button — we use our own launcher */
     [id="__8x8-chat-button-container-script_90642021669e25168d9c255.36008049"] {
+      display: none;
+    }
+
+    /* Custom sliding launcher */
+    #custom-chat-launcher {
       position: fixed;
-      right: 0;
+      right: -80px;          /* only 20px peeking out */
       top: 50%;
       transform: translateY(-50%);
       z-index: 9999;
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+      transition: right 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(-3px 3px 8px rgba(0,0,0,0.25));
+    }
+    #custom-chat-launcher:hover {
+      right: 0;
+      filter: drop-shadow(-4px 4px 14px rgba(4,136,138,0.45));
+    }
+    #custom-chat-launcher img {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
   </style>
 </head>
@@ -1296,7 +1316,12 @@
       </div>
     </div>
   </footer>
-  <!-- Place this code snippet anywhere you want the button to appear in your page. If no button has been configured in the chat script, it will not show up nor take any space. -->
+  <!-- Custom sliding chat launcher -->
+  <div id="custom-chat-launcher" title="Chat with us">
+    <img src="chat-button.png" alt="Chat with us" />
+  </div>
+
+  <!-- 8x8 chat widget button container (hidden — triggered via custom launcher above) -->
   <div id="__8x8-chat-button-container-script_90642021669e25168d9c255.36008049"></div>
   <!-- This script will not interfere with the button layout, you just need to include it in the same page. It must also be within the <body> section of the page, preferably just before the ending tag. -->
   <script type="text/javascript">
@@ -1343,6 +1368,18 @@
           os.parentNode.insertBefore(se, os);
       }
   })();
+  </script>
+
+  <script>
+    // When the custom launcher is clicked, find and click the 8x8 chat button
+    document.getElementById('custom-chat-launcher').addEventListener('click', function () {
+      var btn = document.querySelector(
+        '#__8x8-chat-button-container-script_90642021669e25168d9c255\\.36008049 button, ' +
+        '#__8x8-chat-button-container-script_90642021669e25168d9c255\\.36008049 [role="button"], ' +
+        '#__8x8-chat-button-container-script_90642021669e25168d9c255\\.36008049 a'
+      );
+      if (btn) btn.click();
+    });
   </script>
 </body>
 </html>

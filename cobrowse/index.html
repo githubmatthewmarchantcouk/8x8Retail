@@ -74,6 +74,54 @@
     }
     .nav-secure .lock { font-size: 14px; }
 
+    /* ── CO-BROWSE FLOATING BUTTON ── */
+    .cobrowse-float {
+      position: fixed;
+      left: 20px;
+      bottom: 32px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .cobrowse-float img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--white);
+      box-shadow: 0 4px 16px rgba(4,136,138,.30), 0 1px 4px rgba(0,0,0,.12);
+      border: 2px solid var(--d-teal);
+      transition: transform .2s, box-shadow .2s;
+      object-fit: contain;
+      padding: 4px;
+    }
+    .cobrowse-float:hover img {
+      transform: scale(1.08);
+      box-shadow: 0 6px 24px rgba(4,136,138,.45), 0 2px 6px rgba(0,0,0,.14);
+    }
+    .cobrowse-float-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--d-teal);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 3px 9px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.08);
+      white-space: nowrap;
+    }
+    .cobrowse-float:hover .cobrowse-float-label {
+      background: var(--d-teal);
+      color: var(--white);
+      border-color: var(--d-teal);
+    }
+
     /* ── LAYOUT ── */
     .page-wrap {
       flex: 1;
@@ -554,6 +602,12 @@
 </head>
 <body>
 
+  <!-- CO-BROWSE FLOATING BUTTON -->
+  <a class="cobrowse-float" href="#" onclick="window.coBrowsingInstance && coBrowsingInstance.showPopup(); return false;" title="Start Co-browsing session">
+    <img src="co-browse - transparent.gif" alt="Co-browse with an 8x8 agent" />
+    <span class="cobrowse-float-label">Co-browse</span>
+  </a>
+
   <!-- NAV -->
   <nav class="nav">
     <div class="nav-logo">8<span class="x">x</span>8<sup style="font-size:10px;vertical-align:super;font-weight:400;color:#04888A;">®</sup></div>
@@ -1002,5 +1056,42 @@
       btn.addEventListener('click', () => btn.closest('.order-item').remove());
     });
   </script>
+
+  <!-- 8x8 CO-BROWSING -->
+  <script>
+  window.CoBrowsingCustomStrings = {
+    "popup-title": "8x8 Co-browsing",
+    "popup-close": "X",
+    "popup-start-information": "Please Click Start to initialize the Co-browsing session and pass the session ID below to the Agent.",
+    "popup-sync-information": "You may have open another page that is currently being synchronized. Click Synchronize to synchronize this page instead.",
+    "popup-session-id-label": "Session ID: ",
+    "popup-start-button": "Start",
+    "popup-stop-button": "Stop",
+    "popup-sync-button": "Synchronize",
+    "popup-status-label": "Status: ",
+    "status-connecting": "Connecting...",
+    "status-ready": "Connected",
+    "status-connected": "Connected",
+    "status-replica-disconnected": "Waiting for agent to connect.",
+    "status-disconnected": "Disconnected",
+    "status-sync-required": "Synchronization required",
+    "status-invalid-license": "Invalid license",
+    "status-limited-license": "All agents are busy, please try again later",
+    "status-invalid-domain-for-license": "Invalid domain for license",
+    "status-disabled-license": "Disabled license"
+  };
+  </script>
+
+  <script>
+  (function(e,i,g,h,t,c,o,b,r,w){r=i.createElement(g);r.setAttribute(h,c);
+  o&&Object.keys(o).map(function(k){r.setAttribute(k,o[k])});
+  r.async=1;r.src='https://'+t+'/license'+c+'/dist/primary-bundle.js';
+  w=i.getElementsByTagName(g)[0];w.parentNode.insertBefore(r,w);
+  })(window,document,'script','data-8x8-co-browsing','cb.8x8.com','64b191796da2a0004d8021b6',{
+  'data-8x8-co-browsing-multi-domain': true,
+  'data-8x8-co-browsing-mode':'full-control'
+  });
+  </script>
+
 </body>
 </html>

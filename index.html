@@ -683,34 +683,139 @@
       border-radius: 20px;
       margin-bottom: 16px;
     }
-    /* ────────────── 8x8 CHAT BUTTON ────────────── */
-    /* Hide the default 8x8 widget button — we use our own launcher */
+    /* ────────────── 8x8 CHAT LAUNCHER ────────────── */
     [id="__8x8-chat-button-container-script_90642021669e25168d9c255.36008049"] {
       display: none;
     }
 
-    /* Custom sliding launcher */
     #custom-chat-launcher {
       position: fixed;
-      right: -80px;          /* only 20px peeking out */
+      right: -224px;
       top: 50%;
       transform: translateY(-50%);
       z-index: 9999;
-      width: 100px;
-      height: 100px;
+      display: flex;
+      align-items: stretch;
       cursor: pointer;
-      transition: right 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-      filter: drop-shadow(-3px 3px 8px rgba(0,0,0,0.25));
+      transition: right 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: -4px 4px 24px rgba(0,0,0,0.22);
+      border-radius: 12px 0 0 12px;
+      overflow: hidden;
+      font-family: 'Archivo', sans-serif;
     }
     #custom-chat-launcher:hover {
       right: 0;
-      filter: drop-shadow(-4px 4px 14px rgba(4,136,138,0.45));
+      box-shadow: -6px 6px 32px rgba(4,136,138,0.35);
     }
-    #custom-chat-launcher img {
-      width: 100%;
-      height: 100%;
-      display: block;
+
+    /* Left tab — always visible peek */
+    #chat-tab {
+      background: var(--d-teal);
+      width: 44px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 18px 0;
     }
+    #chat-tab svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    #chat-tab-label {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white);
+      opacity: 0.85;
+    }
+
+    /* Right panel — slides in on hover */
+    #chat-panel {
+      background: var(--dark-grey);
+      width: 224px;
+      padding: 20px 20px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    #chat-panel-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--v-teal);
+      margin-bottom: 6px;
+    }
+    #chat-panel-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    #chat-panel-title em {
+      font-style: normal;
+      font-family: 'Merriweather', serif;
+      color: var(--v-green);
+    }
+    #chat-panel-status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+    #chat-online-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--v-green);
+      flex-shrink: 0;
+      box-shadow: 0 0 0 2px rgba(201,220,80,0.3);
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 2px rgba(201,220,80,0.3); }
+      50%       { box-shadow: 0 0 0 5px rgba(201,220,80,0.1); }
+    }
+    #chat-panel-status span {
+      font-size: 12px;
+      font-weight: 400;
+      color: #c8c8c8;
+    }
+    #chat-cta-btn {
+      background: var(--d-teal);
+      color: var(--white);
+      border: 1.5px solid var(--d-teal);
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Archivo', sans-serif;
+      text-align: center;
+      transition: opacity 0.2s;
+      letter-spacing: 0.3px;
+    }
+    #chat-cta-btn:hover { opacity: 0.85; }
+
+    /* Green accent bar on left edge of panel */
+    #chat-panel::before {
+      content: '';
+      position: absolute;
+      left: 44px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--v-green);
+    }
+    #custom-chat-launcher { position: fixed; } /* re-assert for ::before stacking */
   </style>
 </head>
 <body>
@@ -1317,8 +1422,33 @@
     </div>
   </footer>
   <!-- Custom sliding chat launcher -->
-  <div id="custom-chat-launcher" title="Chat with us">
-    <img src="chat-button.png" alt="Chat with us" />
+  <div id="custom-chat-launcher" role="button" aria-label="Chat with us" tabindex="0">
+
+    <!-- Peek tab (always visible) -->
+    <div id="chat-tab">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z"
+              stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="8.5"  cy="10" r="1.25" fill="white"/>
+        <circle cx="12"   cy="10" r="1.25" fill="white"/>
+        <circle cx="15.5" cy="10" r="1.25" fill="white"/>
+      </svg>
+      <span id="chat-tab-label">Chat</span>
+    </div>
+
+    <!-- Slide-out panel -->
+    <div id="chat-panel">
+      <div>
+        <div id="chat-panel-eyebrow">8x8 Retail · Live Support</div>
+        <div id="chat-panel-title">Talk to us <em>now.</em></div>
+        <div id="chat-panel-status">
+          <div id="chat-online-dot"></div>
+          <span>Agents online &amp; ready</span>
+        </div>
+      </div>
+      <div id="chat-cta-btn">Start a conversation →</div>
+    </div>
+
   </div>
 
   <!-- 8x8 chat widget button container (hidden — triggered via custom launcher above) -->
@@ -1371,14 +1501,18 @@
   </script>
 
   <script>
-    // When the custom launcher is clicked, find and click the 8x8 chat button
-    document.getElementById('custom-chat-launcher').addEventListener('click', function () {
+    function triggerChat() {
       var btn = document.querySelector(
         '#__8x8-chat-button-container-script_90642021669e25168d9c255\\.36008049 button, ' +
         '#__8x8-chat-button-container-script_90642021669e25168d9c255\\.36008049 [role="button"], ' +
         '#__8x8-chat-button-container-script_90642021669e25168d9c255\\.36008049 a'
       );
       if (btn) btn.click();
+    }
+    var launcher = document.getElementById('custom-chat-launcher');
+    launcher.addEventListener('click', triggerChat);
+    launcher.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') triggerChat();
     });
   </script>
 </body>

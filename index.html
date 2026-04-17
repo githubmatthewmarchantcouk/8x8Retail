@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --dark-grey:    #3A3A38;
       --off-white:    #EBEAE1;
@@ -23,7 +22,6 @@
       --neutral-1:    #26252A;
       --neutral-9:    #F4F3EE;
     }
-
     body {
       font-family: 'Archivo', sans-serif;
       color: var(--dark-grey);
@@ -31,10 +29,8 @@
       font-size: 16px;
       line-height: 1.6;
     }
-
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
-
     /* ────────────── NAV ────────────── */
     .nav {
       position: sticky; top: 0; z-index: 1000;
@@ -129,7 +125,6 @@
       display: inline-block;
     }
     .btn-ghost-dark:hover { background: var(--dark-grey); color: var(--white); }
-
     /* Dropdown (visual only) */
     .nav-links li:hover .dropdown { display: block; }
     .dropdown {
@@ -151,7 +146,6 @@
       white-space: nowrap;
     }
     .dropdown a:hover { background: var(--neutral-9); border-bottom: none; color: var(--d-teal); }
-
     /* ────────────── HERO ────────────── */
     .hero {
       background: var(--dark-grey);
@@ -240,7 +234,6 @@
     .hero-ui-bar { height: 8px; border-radius: 4px; background: #e0e0d8; margin-top: 6px; overflow: hidden; }
     .hero-ui-fill { height: 100%; border-radius: 4px; }
     .hero-ui-small-label { font-size: 11px; color: #999; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; display: flex; justify-content: space-between; }
-
     /* ────────────── ANNOUNCEMENT BAR ────────────── */
     .announce {
       background: var(--v-green);
@@ -251,7 +244,6 @@
       font-weight: 500;
     }
     .announce a { font-weight: 700; text-decoration: underline; }
-
     /* ────────────── LOGOS BAR ────────────── */
     .logos-section {
       background: var(--off-white);
@@ -280,7 +272,6 @@
       letter-spacing: 1px;
       opacity: .75;
     }
-
     /* ────────────── SECTION STYLES ────────────── */
     .section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
     .section-full { padding: 80px 40px; }
@@ -316,7 +307,6 @@
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
     .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
     .four-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-
     /* ────────────── PRODUCT CARDS ────────────── */
     .products-section { background: var(--white); padding: 80px 40px; }
     .products-inner { max-width: 1200px; margin: 0 auto; }
@@ -364,7 +354,6 @@
     .product-card.uc .product-card-corner  { background: var(--d-teal); }
     .product-card.api .product-card-corner { background: var(--v-purple); }
     .product-card.eng .product-card-corner { background: var(--v-green); }
-
     /* ────────────── STATS BANNER ────────────── */
     .stats-section { background: var(--dark-grey); padding: 60px 40px; }
     .stats-inner {
@@ -387,7 +376,6 @@
       color: #c8c8c8;
       line-height: 1.4;
     }
-
     /* ────────────── PLATFORM SECTION ────────────── */
     .platform-section { background: var(--neutral-9); padding: 80px 40px; }
     .platform-inner { max-width: 1200px; margin: 0 auto; }
@@ -435,7 +423,6 @@
       border-radius: 20px;
       margin-bottom: 16px;
     }
-
     /* ────────────── FEATURES ────────────── */
     .features-section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
     .feature-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
@@ -456,7 +443,6 @@
     }
     .feature-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
     .feature-card p  { font-size: 14px; font-weight: 300; color: #6c6862; line-height: 1.65; }
-
     /* ────────────── TESTIMONIALS ────────────── */
     .testimonials-section { background: var(--off-white); padding: 80px 40px; }
     .testimonials-inner { max-width: 1200px; margin: 0 auto; }
@@ -500,7 +486,6 @@
       letter-spacing: 1px;
       color: #8d887e;
     }
-
     /* ────────────── AWARDS ────────────── */
     .awards-section { padding: 60px 40px; max-width: 1200px; margin: 0 auto; }
     .awards-header { text-align: center; margin-bottom: 48px; }
@@ -516,7 +501,6 @@
     .award-icon { font-size: 28px; margin-bottom: 8px; }
     .award-title { font-size: 13px; font-weight: 700; color: var(--dark-grey); line-height: 1.3; }
     .award-sub { font-size: 11px; color: #8d887e; margin-top: 3px; }
-
     /* ────────────── WHY 8x8 ────────────── */
     .why-section { background: var(--dark-grey); padding: 80px 40px; color: var(--white); }
     .why-inner { max-width: 1200px; margin: 0 auto; }
@@ -531,7 +515,6 @@
     }
     .why-item h3 { font-size: 20px; font-weight: 600; color: var(--white); margin-bottom: 10px; }
     .why-item p  { font-size: 14.5px; font-weight: 300; color: #c8c8c8; line-height: 1.7; }
-
     /* ────────────── CTA BANNER ────────────── */
     .cta-section {
       background: var(--v-green);
@@ -579,7 +562,6 @@
       transition: background .2s;
     }
     .btn-ghost-green:hover { background: rgba(0,0,0,.08); }
-
     /* ────────────── SOLUTIONS TABS ────────────── */
     .solutions-section { padding: 80px 40px; background: var(--white); }
     .solutions-inner { max-width: 1200px; margin: 0 auto; }
@@ -627,7 +609,6 @@
     .metric-box .m-lbl { font-size: 11px; color: #8d887e; margin-top: 4px; }
     .mini-chart { display: flex; align-items: flex-end; gap: 4px; height: 60px; margin-top: 16px; }
     .mini-bar { flex: 1; border-radius: 3px 3px 0 0; }
-
     /* ────────────── PARTNERS ────────────── */
     .partners-section { background: var(--neutral-9); padding: 60px 40px; }
     .partners-inner { max-width: 1200px; margin: 0 auto; }
@@ -644,7 +625,6 @@
       transition: border-color .2s, color .2s;
     }
     .partner-pill:hover { border-color: var(--d-teal); color: var(--d-teal); }
-
     /* ────────────── FOOTER ────────────── */
     footer { background: var(--neutral-1); color: #c8c8c8; padding: 60px 40px 0; }
     .footer-inner { max-width: 1200px; margin: 0 auto; }
@@ -686,7 +666,6 @@
     .footer-bottom-links { display: flex; gap: 20px; }
     .footer-bottom-links a { font-size: 12px; color: #6c6862; transition: color .2s; }
     .footer-bottom-links a:hover { color: var(--v-teal); }
-
     /* ────────────── UTILITIES ────────────── */
     .text-center { text-align: center; }
     .text-center .section-desc { margin-left: auto; margin-right: auto; }
@@ -707,17 +686,14 @@
   </style>
 </head>
 <body>
-
   <!-- ══════ ANNOUNCEMENT BAR ══════ -->
   <div class="announce">
     🏆 8x8 named a Leader in the 2024 Gartner® Magic Quadrant™ for UCaaS for the 13th consecutive year.
     <a href="#">Read the report →</a>
   </div>
-
   <!-- ══════ NAV ══════ -->
   <nav class="nav">
-    <a href="#" class="nav-logo">8<span class="x">x</span>8<sup style="font-size:11px;vertical-align:super;font-weight:400;color:#04888A;">®</sup></a>
-
+    <a href="https://githubmatthewmarchantcouk.github.io/8x8Retail/cobrowse/" class="nav-logo">8<span class="x">x</span>8<sup style="font-size:11px;vertical-align:super;font-weight:400;color:#04888A;">®</sup></a>
     <ul class="nav-links">
       <li>
         <a href="#">Products <span class="arrow">▾</span></a>
@@ -772,13 +748,11 @@
         </div>
       </li>
     </ul>
-
     <div class="nav-actions">
       <button class="btn-outline">Log In</button>
       <button class="btn-primary">Get a Demo</button>
     </div>
   </nav>
-
   <!-- ══════ HERO ══════ -->
   <section class="hero">
     <div class="hero-content">
@@ -852,7 +826,6 @@
       </div>
     </div>
   </section>
-
   <!-- ══════ TRUSTED BY LOGOS ══════ -->
   <div class="logos-section">
     <h3>Trusted by over 2 million users worldwide</h3>
@@ -867,7 +840,6 @@
       <span class="logo-placeholder">Teleperformance</span>
     </div>
   </div>
-
   <!-- ══════ PRODUCTS ══════ -->
   <div class="products-section">
     <div class="products-inner">
@@ -916,7 +888,6 @@
       </div>
     </div>
   </div>
-
   <!-- ══════ STATS ══════ -->
   <div class="stats-section">
     <div class="stats-inner">
@@ -938,7 +909,6 @@
       </div>
     </div>
   </div>
-
   <!-- ══════ PLATFORM SECTION ══════ -->
   <div class="platform-section">
     <div class="platform-inner">
@@ -996,7 +966,6 @@
       </div>
     </div>
   </div>
-
   <!-- ══════ SOLUTIONS TABS ══════ -->
   <div class="solutions-section">
     <div class="solutions-inner">
@@ -1061,7 +1030,6 @@
       </div>
     </div>
   </div>
-
   <!-- ══════ FEATURES ══════ -->
   <div style="background:var(--neutral-9);padding:80px 40px;">
   <div class="features-section" style="padding:0;max-width:1200px;margin:0 auto;">
@@ -1104,7 +1072,6 @@
     </div>
   </div>
   </div>
-
   <!-- ══════ TESTIMONIALS ══════ -->
   <div class="testimonials-section">
     <div class="testimonials-inner">
@@ -1153,7 +1120,6 @@
       </div>
     </div>
   </div>
-
   <!-- ══════ AWARDS ══════ -->
   <div class="awards-section">
     <div class="awards-header">
@@ -1188,7 +1154,6 @@
       </div>
     </div>
   </div>
-
   <!-- ══════ WHY 8x8 ══════ -->
   <div class="why-section">
     <div class="why-inner">
@@ -1213,7 +1178,6 @@
       </div>
     </div>
   </div>
-
   <!-- ══════ PARTNERS ══════ -->
   <div class="partners-section">
     <div class="partners-inner">
@@ -1240,7 +1204,6 @@
       </div>
     </div>
   </div>
-
   <!-- ══════ CTA BANNER ══════ -->
   <div class="cta-section">
     <h2>Ready to power your <em style="font-style:normal;font-family:'Merriweather',serif;">CX ambitions?</em></h2>
@@ -1250,7 +1213,6 @@
       <a href="#" class="btn-ghost-green">View Plans &amp; Pricing</a>
     </div>
   </div>
-
   <!-- ══════ FOOTER ══════ -->
   <footer>
     <div class="footer-inner">
@@ -1313,7 +1275,6 @@
           </ul>
         </div>
       </div>
-
       <div class="footer-bottom">
         <div class="footer-bottom-text">© 8x8, Inc. 2026. All rights reserved.</div>
         <div class="footer-bottom-links">
@@ -1327,6 +1288,5 @@
       </div>
     </div>
   </footer>
-
 </body>
 </html>

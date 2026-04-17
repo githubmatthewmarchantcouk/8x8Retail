@@ -1694,7 +1694,7 @@
     </div>
 
     <form name="WebCallBack" action="https://vcc-eu5.8x8.com/SC/webcallback.php" method="get"
-          oninput="extTransactionData.value = '[Name|' + fname.value +' '+ lname.value + '][Location|' + location.value + '][Reason|' + reason.value +']'">
+          oninput="(function(f){ f.extTransactionData.value = '[Name|' + f.fname.value + ' ' + f.lname.value + '][Location|' + f.elements.location.value + '][Reason|' + f.reason.value + ']'; })(document.WebCallBack)">
       <input type="hidden" name="extTransactionData"/>
       <input type="hidden" name="tenant"          value="uksalesenablement47801"/>
       <input type="hidden" name="token"           value="6417c61d2e76696a46841e53a00368a6441978972cdf471ac2d39307e14df09e"/>
@@ -1729,7 +1729,7 @@
         </div>
         <div class="cbf-field">
           <label class="cbf-label" for="cb-phone">Phone number</label>
-          <input class="cbf-input" type="tel" id="cb-phone" name="phone" placeholder="+44 20 1234 5678" class="maskContent"/>
+          <input class="cbf-input maskContent" type="tel" id="cb-phone" name="phone" placeholder="+44 20 1234 5678"/>
         </div>
       </div>
 
@@ -1820,6 +1820,14 @@
   </script>
 
   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(function () {
+        if (!window.coBrowsingInstance) {
+          console.error("coBrowsingInstance not initialized");
+        }
+      }, 2000);
+    });
+
     function openCallbackForm(e) {
       if (e) e.stopPropagation();
       document.getElementById('callback-form-popup').classList.add('open');

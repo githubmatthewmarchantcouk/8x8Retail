@@ -816,6 +816,249 @@
       background: var(--v-green);
     }
     #custom-chat-launcher { position: fixed; } /* re-assert for ::before stacking */
+
+    /* ────────────── CALLBACK LAUNCHER ────────────── */
+    #callback-launcher {
+      position: fixed;
+      right: -210px;
+      bottom: 40px;
+      z-index: 9998;
+      display: flex;
+      align-items: stretch;
+      cursor: pointer;
+      transition: right 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: -4px 4px 24px rgba(0,0,0,0.22);
+      border-radius: 12px 0 0 12px;
+      overflow: visible;
+      font-family: 'Archivo', sans-serif;
+    }
+    #callback-launcher:hover {
+      right: 0;
+      box-shadow: -6px 6px 32px rgba(201,220,80,0.25);
+    }
+    #callback-tab {
+      background: var(--dark-grey);
+      width: 44px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 18px 0;
+      border-radius: 12px 0 0 12px;
+    }
+    #callback-tab svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    #callback-tab-label {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--v-green);
+      opacity: 0.9;
+    }
+    #callback-panel {
+      background: var(--dark-grey);
+      width: 210px;
+      padding: 20px 20px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      position: relative;
+    }
+    #callback-panel::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--v-green);
+    }
+    #callback-panel-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--v-teal);
+      margin-bottom: 4px;
+    }
+    #callback-panel-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    #callback-panel-title em {
+      font-style: normal;
+      font-family: 'Merriweather', serif;
+      color: var(--v-green);
+    }
+    #callback-open-btn {
+      background: var(--v-green);
+      color: var(--dark-grey);
+      border: none;
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'Archivo', sans-serif;
+      text-align: center;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      letter-spacing: 0.3px;
+      width: 100%;
+    }
+    #callback-open-btn:hover { opacity: 0.88; }
+
+    /* ── Popup form ── */
+    #callback-form-popup {
+      display: none;
+      position: fixed;
+      bottom: 40px;
+      right: 0;
+      z-index: 10000;
+      width: 340px;
+      background: var(--dark-grey);
+      border-radius: 12px 0 0 12px;
+      box-shadow: -6px 6px 40px rgba(0,0,0,0.35);
+      font-family: 'Archivo', sans-serif;
+      overflow: hidden;
+      animation: slideInForm 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes slideInForm {
+      from { transform: translateX(100%); opacity: 0; }
+      to   { transform: translateX(0);   opacity: 1; }
+    }
+    #callback-form-popup.open { display: block; }
+
+    .cbf-header {
+      background: var(--neutral-1);
+      padding: 18px 20px 16px;
+      border-bottom: 3px solid var(--v-green);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .cbf-header-text {}
+    .cbf-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--v-teal);
+      margin-bottom: 4px;
+    }
+    .cbf-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .cbf-title em {
+      font-style: normal;
+      font-family: 'Merriweather', serif;
+      color: var(--v-green);
+    }
+    .cbf-close {
+      background: rgba(255,255,255,0.08);
+      border: none;
+      color: #c8c8c8;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-left: 10px;
+      margin-top: 2px;
+      transition: background 0.2s;
+    }
+    .cbf-close:hover { background: rgba(255,255,255,0.18); color: var(--white); }
+
+    .cbf-body {
+      padding: 20px 20px 6px;
+    }
+    .cbf-field {
+      margin-bottom: 14px;
+    }
+    .cbf-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #aba999;
+      margin-bottom: 6px;
+    }
+    .cbf-input {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      color: var(--white);
+      font-size: 14px;
+      font-family: 'Archivo', sans-serif;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+    }
+    .cbf-input::placeholder { color: #6c6862; }
+    .cbf-input:focus {
+      border-color: var(--d-teal);
+      background: rgba(4,136,138,0.08);
+    }
+    select.cbf-input option { background: var(--dark-grey); color: var(--white); }
+
+    .cbf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .cbf-footer {
+      padding: 14px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cbf-submit {
+      background: var(--d-teal);
+      color: var(--white);
+      border: 1.5px solid var(--d-teal);
+      border-radius: 4px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: 'Archivo', sans-serif;
+      cursor: pointer;
+      width: 100%;
+      transition: opacity 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .cbf-submit:hover { opacity: 0.88; }
+    .cbf-cancel {
+      background: transparent;
+      color: #aba999;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Archivo', sans-serif;
+      cursor: pointer;
+      width: 100%;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .cbf-cancel:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
   </style>
 </head>
 <body>
@@ -1421,6 +1664,82 @@
       </div>
     </div>
   </footer>
+  <!-- ══════ CALLBACK LAUNCHER TAB ══════ -->
+  <div id="callback-launcher" role="button" aria-label="Request a Callback" tabindex="0">
+    <div id="callback-tab">
+      <!-- Phone icon -->
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+              stroke="#C9DC50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span id="callback-tab-label">Call</span>
+    </div>
+    <div id="callback-panel">
+      <div>
+        <div id="callback-panel-eyebrow">Free · No Wait</div>
+        <div id="callback-panel-title">We'll call <em>you back.</em></div>
+      </div>
+      <button id="callback-open-btn" onclick="openCallbackForm(event)">Request a Callback →</button>
+    </div>
+  </div>
+
+  <!-- ══════ CALLBACK FORM POPUP ══════ -->
+  <div id="callback-form-popup">
+    <div class="cbf-header">
+      <div class="cbf-header-text">
+        <div class="cbf-eyebrow">8x8 Retail · Callback</div>
+        <div class="cbf-title">We'll call <em>you back.</em></div>
+      </div>
+      <button class="cbf-close" onclick="closeCallbackForm()" aria-label="Close">✕</button>
+    </div>
+
+    <form name="WebCallBack" action="https://vcc-eu5.8x8.com/SC/webcallback.php" method="get"
+          oninput="extTransactionData.value = '[Name|' + fname.value +' '+ lname.value + '][Location|' + location.value + '][Reason|' + reason.value +']'">
+      <input type="hidden" name="extTransactionData"/>
+      <input type="hidden" name="tenant"          value="uksalesenablement47801"/>
+      <input type="hidden" name="token"           value="6417c61d2e76696a46841e53a00368a6441978972cdf471ac2d39307e14df09e"/>
+      <input type="hidden" name="channel_number"  value="442039845210"/>
+      <input type="hidden" name="callback_type"   value="1"/>
+      <input type="hidden" name="queue_id"        value="107"/>
+      <input type="hidden" name="expiration"      value="1200"/>
+
+      <div class="cbf-body">
+        <div class="cbf-row">
+          <div class="cbf-field">
+            <label class="cbf-label" for="cb-fname">First name</label>
+            <input class="cbf-input" type="text" id="cb-fname" name="fname" placeholder="Jane"/>
+          </div>
+          <div class="cbf-field">
+            <label class="cbf-label" for="cb-lname">Last name</label>
+            <input class="cbf-input" type="text" id="cb-lname" name="lname" placeholder="Smith"/>
+          </div>
+        </div>
+        <div class="cbf-field">
+          <label class="cbf-label" for="cb-location">Location</label>
+          <input class="cbf-input" type="text" id="cb-location" name="location" placeholder="London, UK"/>
+        </div>
+        <div class="cbf-field">
+          <label class="cbf-label" for="cb-reason">Reason for call</label>
+          <select class="cbf-input" id="cb-reason" name="reason">
+            <option value="Teams Integrations">Teams Integrations</option>
+            <option value="Customer Experience">Customer Experience</option>
+            <option value="X-Series" selected>X-Series</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="cbf-field">
+          <label class="cbf-label" for="cb-phone">Phone number</label>
+          <input class="cbf-input" type="tel" id="cb-phone" name="phone" placeholder="+44 20 1234 5678" class="maskContent"/>
+        </div>
+      </div>
+
+      <div class="cbf-footer">
+        <button type="submit" class="cbf-submit">📞 Call Me Back</button>
+        <button type="button" class="cbf-cancel" onclick="closeCallbackForm()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
   <!-- Custom sliding chat launcher -->
   <div id="custom-chat-launcher" role="button" aria-label="Chat with us" tabindex="0">
 
@@ -1498,6 +1817,23 @@
           os.parentNode.insertBefore(se, os);
       }
   })();
+  </script>
+
+  <script>
+    function openCallbackForm(e) {
+      if (e) e.stopPropagation();
+      document.getElementById('callback-form-popup').classList.add('open');
+      // Hide the launcher tab while form is open
+      document.getElementById('callback-launcher').style.display = 'none';
+    }
+    function closeCallbackForm() {
+      document.getElementById('callback-form-popup').classList.remove('open');
+      document.getElementById('callback-launcher').style.display = 'flex';
+    }
+    // Keyboard accessibility for callback launcher
+    document.getElementById('callback-launcher').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') openCallbackForm(null);
+    });
   </script>
 
   <script>
